@@ -6,10 +6,14 @@ public class SpiderRigControllerComponent : MonoBehaviour
 {
     //public GameObject floor;
     public Vector3 currentPosition;
+    public bool staticFlag = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        if (staticFlag)
+        {
+            transform.position += currentPosition;
+        }
 
         //gameObject.transform.SetParent(floor.transform);
         //currentPosition = transform.position;
@@ -20,6 +24,7 @@ public class SpiderRigControllerComponent : MonoBehaviour
     {
         //print(transform.position);
         //print(floor);
+        
         transform.position = currentPosition;
     }
 

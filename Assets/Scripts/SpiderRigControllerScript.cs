@@ -51,11 +51,11 @@ public class SpiderRigControllerScript : MonoBehaviour
         //print("Update Leg: " + gameObject.ToString());
 
         dir = (spider.rotation * controllerRaycastDirection * Vector3.up);
-        print(dir);
+        //print(dir);
         if (Physics.Raycast(transform.position, dir, out hit, maxRange, layerMask))
         {
             controllerPosition = hit.point;
-            print("hit: " + hit);
+            //print("hit: " + hit);
             controller.setCurrentPostion(controllerPosition);
         }
 
