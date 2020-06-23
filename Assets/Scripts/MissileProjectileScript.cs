@@ -19,6 +19,8 @@ public class MissileProjectileScript : MonoBehaviour
     private float startTime;
     public Vector3 launchForce = new Vector3();
 
+    public float explodeRadius = 15f;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,14 +66,14 @@ public class MissileProjectileScript : MonoBehaviour
         string tag = collision.gameObject.tag;
         if (tagTargets.Contains(tag))
         {
-            print(gameObject + " hit " + collision.gameObject);
+            //print(gameObject + " hit " + collision.gameObject);
             if (launched)
             {
                 rigidbody.angularVelocity = new Vector3();
                 rigidbody.velocity = new Vector3();
                 collided = true;
-                Destroy(gameObject);
-
+                //Destroy(gameObject);
+                detnation();
             }
         }
     }
@@ -113,5 +115,21 @@ public class MissileProjectileScript : MonoBehaviour
     {
         rigidbody.AddForce(-launchForce);
         
-    }    
+    }
+    
+    public void detnation()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explodeRadius);
+
+        Target t;
+        foreach (Collider nearByObject in colliders)
+        {
+            t = nearByObject.GetComponent<Target>();
+            if (t != null)
+            {
+                t.TakeDamage(100f);
+            }
+        }
+        Destroy(gameObject);
+    }
 }

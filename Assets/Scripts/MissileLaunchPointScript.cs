@@ -6,12 +6,15 @@ public class MissileLaunchPointScript : MonoBehaviour
 {
     public GameObject missle;
     public GameObject targetArea;
-    public float timeToSpawn = 0.5f;
+    public float timeBetweenFire = 0.1f;
+    public int missilesPerVolley = 1;
     private float currentTime;
-    public float launchForceY = 1500f;
+    public float launchForceY = 3000f;
     [SerializeField] private Vector3 targetDirection;
     public float directionScale = 0.2f;
     public Vector3 randomForce;
+    private bool firing = false;
+    private int volleyCount = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,15 +24,18 @@ public class MissileLaunchPointScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - currentTime > timeToSpawn)
+        if (firing)
         {
-            currentTime = Time.time;
-            launchMissle();
-
+            activeLaunchMissile();
+            if (volleyCount >= missilesPerVolley)
+            {
+                firing = false;
+                volleyCount = 0;
+            }
         }
     }
 
-    private void launchMissle()
+    public void launchMissle()
     {
         targetDirection = targetArea.transform.position - transform.position;
         MissileProjectileScript m = Instantiate(missle).GetComponent<MissileProjectileScript>();
@@ -37,8 +43,27 @@ public class MissileLaunchPointScript : MonoBehaviour
         m.setTargetPosition(targetArea.GetComponent<MissileTargetAreaScript>().getRandomPoint());
         Vector3 launchForce = new Vector3(Random.Range(-randomForce.x, randomForce.x), launchForceY+ Random.Range(-randomForce.y, randomForce.y), Random.Range(-randomForce.z, randomForce.z));
         launchForce += targetDirection* directionScale;
-        m.setInitialLaunch(launchForce,(targetDirection.magnitude)/100f);
+        m.setInitialLaunch(launchForce,(targetDirection.magnitude)/(launchForceY/10f));
         
-        print(m+"  "+ targetDirection.magnitude);
+        //print(m+"  "+ targetDirection.magnitude);
     }
+
+    public void fire()
+    {
+        firing = true;
+    }
+
+    
+    public void activeLaunchMissile()
+    {
+        if (Time.time - currentTime > timeBetweenFire)
+        {
+            currentTime = Time.time;
+            volleyCount++;
+            launchMissle();
+
+        }
+    }
+
+    
 }

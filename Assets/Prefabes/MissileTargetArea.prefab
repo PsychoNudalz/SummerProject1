@@ -124,3 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaRadius: 25
+  scale: 0.7
+  areaScaledToDistance: 1
+  sizePerUnit: 0.5

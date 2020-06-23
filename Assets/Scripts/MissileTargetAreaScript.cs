@@ -6,6 +6,8 @@ public class MissileTargetAreaScript : MonoBehaviour
 {
     public float areaRadius = 25f;
     public float scale = 0.8f;
+    public bool areaScaledToDistance = true;
+    public float sizePerUnit = 0.1f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,5 +27,11 @@ public class MissileTargetAreaScript : MonoBehaviour
         float randomZ = Random.Range(-pyth, pyth);
         Vector3 randomPoint = (new Vector3(randomX, 0, randomZ))+transform.position;
         return randomPoint;
+    }
+
+    public void setArea(float distance)
+    {
+        areaRadius = distance * sizePerUnit;
+        gameObject.transform.localScale = new Vector3(areaRadius, gameObject.transform.localScale.y, areaRadius);
     }
 }

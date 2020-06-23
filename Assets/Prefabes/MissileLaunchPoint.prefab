@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missle: {fileID: 7898648264970304072, guid: 2d791622920b3ce47b790d05b8a157f9, type: 3}
   targetArea: {fileID: 0}
-  timeToSpawn: 0.1
-  launchForceY: 1500
+  timeToSpawn: 0.05
+  launchForceY: 3000
   targetDirection: {x: 0, y: 0, z: 0}
   directionScale: 0.2
   randomForce: {x: 500, y: 500, z: 500}
