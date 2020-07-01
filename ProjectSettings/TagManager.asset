@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Projectile
   - Target
+  - Core
+  - EnemySwarm
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Target
   - Camera
   - Projectile
-  - 
+  - Core
   - 
   - 
   - 

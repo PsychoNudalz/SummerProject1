@@ -40,6 +40,15 @@ public class PlayerControls : MonoBehaviour
             playerStates.stopCurrentWeapon();
             firingWeapon = false;
         }
+
+        if (Input.GetKeyDown("1"))
+        {
+            playerStates.setWeapon(0);
+        }
+        else if (Input.GetKeyDown("2"))
+        {
+            playerStates.setWeapon(1);
+        }
         if (firingWeapon)
         {
             playerStates.fireCurrentWeapon();

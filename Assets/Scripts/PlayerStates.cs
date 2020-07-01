@@ -8,18 +8,18 @@ public class PlayerStates : MonoBehaviour
     public float maxHeath = 100f;
     public WeaponType[] weaponTypes;
     [SerializeField] private WeaponType currentWeapon;
+    //public TextMeshProUGUI UI_AmmoValue;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        currentWeapon = weaponTypes[0];
+        currentWeapon = weaponTypes[1];
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void setWeapon(int num)
@@ -39,5 +39,11 @@ public class PlayerStates : MonoBehaviour
     public void stopCurrentWeapon()
     {
         currentWeapon.ActiveFire = false;
+    }
+
+    public string getAmmo()
+    {
+        return "Weapon Type: " + currentWeapon.getWeaponType() + "\n Ammo: " + currentWeapon.Ammo.ToString("0");
+
     }
 }

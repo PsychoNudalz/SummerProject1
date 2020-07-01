@@ -15,6 +15,10 @@ public class ThirdPersonMovement : MonoBehaviour
 
     Vector3 velocity;
 
+    public bool rotateToGround = true;
+
+    [SerializeField] LayerMask groundLayer;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,7 +28,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) *Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
@@ -32,7 +36,22 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
             velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity*Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime);
         }
+        if (rotateToGround)
+        {
+            getAlignment();
+        }
+    }
+
+    private void getAlignment()
+    {
+        RaycastHit hit;
+        if (!Physics.Raycast(transform.position, -transform.up, out hit, 5f, groundLayer))
+        {
+            Physics.Raycast(transform.position, -Vector3.up, out hit, 5f, groundLayer);
+        }
+
+        
     }
 }

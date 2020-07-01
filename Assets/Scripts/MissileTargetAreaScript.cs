@@ -11,7 +11,8 @@ public class MissileTargetAreaScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gameObject.transform.localScale = new Vector3(areaRadius * 2f,gameObject.transform.localScale.y,areaRadius*2f);
+        gameObject.transform.localScale = new Vector3(areaRadius,areaRadius,areaRadius);
+        print(gameObject.transform.localScale);
     }
 
     // Update is called once per frame
@@ -32,6 +33,9 @@ public class MissileTargetAreaScript : MonoBehaviour
     public void setArea(float distance)
     {
         areaRadius = distance * sizePerUnit;
-        gameObject.transform.localScale = new Vector3(areaRadius, gameObject.transform.localScale.y, areaRadius);
+        gameObject.transform.localScale = new Vector3(areaRadius, areaRadius, areaRadius);
+
+        print(gameObject.transform.localScale);
+
     }
 }

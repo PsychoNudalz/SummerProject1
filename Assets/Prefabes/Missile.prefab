@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6730576742656111323}
   - component: {fileID: 3856483347739705046}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: -90, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8790752042418286868}
   - component: {fileID: 3318699700591078878}
   - component: {fileID: 6962753924394176476}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -376,7 +376,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3863,9 +3863,9 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 0
+    enabled: 1
     ratio: 0
-    light: {fileID: 0}
+    light: {fileID: 3856483347739705046}
     randomDistribution: 1
     color: 1
     range: 1
@@ -4810,7 +4810,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4868,7 +4868,7 @@ GameObject:
   - component: {fileID: 4385745283235111144}
   - component: {fileID: 8265274845189907003}
   - component: {fileID: 7440161495575509365}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DamageSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 7898648264970304074}
   - component: {fileID: 7898648264970304076}
   - component: {fileID: 7898648264970304075}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Missile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -5027,6 +5027,9 @@ MonoBehaviour:
   timeToLaunch: 1
   launchForce: {x: 0, y: 0, z: 0}
   explodeRadius: 15
+  damage: 50
+  explosion: {fileID: 4733510360146484765, guid: aab1ee361afa20b40abba1fa65bed170,
+    type: 3}
 --- !u!135 &7898648264970304076
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5067,7 +5070,7 @@ GameObject:
   - component: {fileID: 7898648266941315121}
   - component: {fileID: 7898648266941315125}
   - component: {fileID: 7898648266941315124}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Projectile
   m_Icon: {fileID: 0}

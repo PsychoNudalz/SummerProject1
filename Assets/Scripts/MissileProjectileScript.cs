@@ -20,6 +20,9 @@ public class MissileProjectileScript : MonoBehaviour
     public Vector3 launchForce = new Vector3();
 
     public float explodeRadius = 15f;
+    public float damage = 50f;
+
+    public GameObject explosion;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +30,8 @@ public class MissileProjectileScript : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         setDirection();
         startTime = Time.time;
+        explosion = Instantiate(explosion, transform.position, transform.rotation);
+        explosion.SetActive(false);
     }
 
     // Update is called once per frame
@@ -120,16 +125,20 @@ public class MissileProjectileScript : MonoBehaviour
     public void detnation()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explodeRadius);
-
+        explosion.transform.position = transform.position;
+        explosion.SetActive(true);
+        explosion.GetComponent<ParticleSystem>().Play();
         Target t;
         foreach (Collider nearByObject in colliders)
         {
             t = nearByObject.GetComponent<Target>();
             if (t != null)
             {
-                t.TakeDamage(100f);
+                t.TakeDamage(damage);
             }
         }
         Destroy(gameObject);
+        Destroy(explosion, 1.5f);
+
     }
 }

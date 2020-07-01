@@ -19,15 +19,20 @@ public class CrossTrapScript : MonoBehaviour
     [SerializeField] LayerMask detnationLayer;
     [SerializeField] LayerMask stickLayer;
     [SerializeField] string[] stickTag;
-    public float test;
+    //public float test;
 
+    public float timeToPrimable = 0.1f;
     [SerializeField] bool primed = false;
-    [SerializeField] string collision;
-
+    //[SerializeField] string collision;
+    public GameObject explosion;
     // Start is called before the first frame update
     private void Awake()
     {
-        
+        rb.AddTorque(new Vector3(0, 500, 0));
+        transform.Rotate(transform.up, Random.Range(0, 360));
+        explosion = Instantiate(explosion, transform.position, transform.rotation);
+        explosion.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -39,17 +44,23 @@ public class CrossTrapScript : MonoBehaviour
             {
                 detnation();
             }
+        }else if (!primed)
+        {
+            timeToPrimable -= Time.deltaTime;
+            rb.AddTorque(new Vector3(0, 500, 0));
+
         }
+
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!primed && stickTag.Contains(collision.collider.tag))
+        if (!primed && stickTag.Contains(collision.collider.tag) && timeToPrimable < 0)
         {
 
             getAlignment(collision);
-            this.collision = collision.collider.tag.ToString();
+            //this.collision = collision.collider.tag.ToString();
             primed = true;
         }
     }
@@ -111,7 +122,9 @@ public class CrossTrapScript : MonoBehaviour
     public void detnation()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-
+        explosion.transform.position = transform.position;
+        explosion.SetActive(true);
+        explosion.GetComponent<ParticleSystem>().Play();
         Target t;
         foreach (Collider nearByObject in colliders)
         {
@@ -122,6 +135,7 @@ public class CrossTrapScript : MonoBehaviour
             }
         }
         Destroy(gameObject);
+        Destroy(explosion, 1.5f);
     }
 
     private void getAlignment(Collision c)
@@ -135,6 +149,8 @@ public class CrossTrapScript : MonoBehaviour
         transform.position = hit.point;
 
         transform.up = hit.normal;
+        transform.Rotate(Vector3.up, Random.Range(0, 360));
+
         rb.constraints = RigidbodyConstraints.FreezeAll;
 
     }

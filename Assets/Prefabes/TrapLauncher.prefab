@@ -137,9 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5be096b7616594e977e39d68eafe66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trap: {fileID: 7902255827708535087, guid: 9086d0c06dd8b50468750dc25027873c, type: 3}
-  trapRB: {fileID: 1946277644873975227, guid: 9086d0c06dd8b50468750dc25027873c, type: 3}
-  aimBall: {fileID: 0}
+  trap: {fileID: 1677434606598936070, guid: b184ea0ae049dca4bba752a9d58c53f7, type: 3}
+  trapRB: {fileID: 3555728975411523303, guid: b184ea0ae049dca4bba752a9d58c53f7, type: 3}
+  aimBall: {fileID: 3324912353131553827, guid: 85fc25a78a5952d4f88b5b12e588d75a, type: 3}
+  testPoint: {x: 0, y: 0, z: 0}
   fireAngle: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  force: 6000
+  speed: 50
   timeBetweenFire: 1

@@ -5,9 +5,10 @@ using UnityEngine;
 public class WeaponType : MonoBehaviour
 {
 
-
     [SerializeField] private WeaponTypesEnum weapon;
     [SerializeField] private GameObject launcher;
+    [SerializeField] private GameObject aimer;
+
     [SerializeField] private float ammo;
     public float Ammo { get => ammo; set => ammo = value; }
     public float Ammo_Max;
@@ -26,12 +27,11 @@ public class WeaponType : MonoBehaviour
     [SerializeField] private bool activeFire;
     public bool ActiveFire { get => activeFire; set => activeFire = value; }
 
-
     private void Update()
     {
-        if (rechargeable & !isFull() &!activeFire)
+        if (rechargeable & !isFull() & !activeFire)
         {
-            ammo += rechargeRate*Time.deltaTime;
+            ammo += rechargeRate * Time.deltaTime;
         }
         if (timeNow > 0)
         {
@@ -73,8 +73,8 @@ public class WeaponType : MonoBehaviour
 
         }
         return false;
-        
-        
+
+
     }
 
     public bool isFull()
@@ -103,6 +103,7 @@ public class WeaponType : MonoBehaviour
                     launcher.GetComponent<MissileLaunchPointScript>().fire();
                     break;
                 case WeaponTypesEnum.Trap:
+                    launcher.GetComponent<TrapLaunchPointScript>().fire();
                     break;
                 case WeaponTypesEnum.Rocket:
                     break;
@@ -112,13 +113,30 @@ public class WeaponType : MonoBehaviour
         {
             activeFire = false;
         }
-        print(ammo);
+        //print(ammo);
 
     }
 
     public void addAmmo(float amout)
     {
         ammo += amout;
+    }
+
+    public string getWeaponType()
+    {
+        string name = "NULL";
+        switch (weapon)
+        {
+            case WeaponTypesEnum.Missile:
+                name = "Missile";
+                break;
+            case WeaponTypesEnum.Trap:
+                name = "Trap";
+                break;
+            case WeaponTypesEnum.Rocket:
+                break;
+        }
+        return name;
     }
 
 

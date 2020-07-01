@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681338018481387293}
   - component: {fileID: 8681338018481387294}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MissileLaunchPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missle: {fileID: 7898648264970304072, guid: 2d791622920b3ce47b790d05b8a157f9, type: 3}
   targetArea: {fileID: 0}
-  timeToSpawn: 0.05
+  timeBetweenFire: 0.05
+  missilesPerVolley: 10
   launchForceY: 3000
   targetDirection: {x: 0, y: 0, z: 0}
   directionScale: 0.2
@@ -62,8 +63,7 @@ GameObject:
   - component: {fileID: 8681338019652221703}
   - component: {fileID: 8681338019652221700}
   - component: {fileID: 8681338019652221701}
-  - component: {fileID: 8681338019652221702}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,16 +131,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8681338019652221702
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681338019652221696}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

@@ -33,6 +33,7 @@ public class CameraAim : MonoBehaviour
             if (aiming)
             {
                 item.transform.position = hit.point;
+                item.transform.up = hit.normal;
 
             }
         }
